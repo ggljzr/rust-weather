@@ -1,6 +1,6 @@
 # Rust-Weather
 
-Super simple weather widget for [i3blocks](https://github.com/vivien/i3blocks). Possibly for other uses too, since it just prints current temperature and humidity to stdout. WORK IN PROGRESS.
+Super simple weather widget for [i3blocks](https://github.com/vivien/i3blocks). Possibly for other uses too, since it just prints current temperature and humidity to stdout.
 
 ## Installation
 
@@ -12,8 +12,10 @@ $ cargo build --release
 
 ## Usage
 
-Binary: `target/release/rust-weather`. Requires API key from [openweathermap](https://openweathermap.org/) in `config.json`. Since path to cofig file is hardcoded (for now), this file needs to be in the same place as binary.
+Binary: `target/release/rust-weather`. Requires API key from [openweathermap](https://openweathermap.org/) in `config.json`.
 
-## todos
+```
+$ rust-weather /path/to/config.json
+```
 
-Better config reading.
+If argument is omitted, application looks for `config.json` in working directory.
