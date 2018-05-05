@@ -53,7 +53,8 @@ fn print_data(data: &Value) {
 
 #[derive(Deserialize, Debug)]
 struct Config {
-	api_key: String
+	api_key: String,
+	location: String
 }
 
 fn read_config(path: &str) -> Result<Config, Box<Error>> {
@@ -64,17 +65,15 @@ fn read_config(path: &str) -> Result<Config, Box<Error>> {
 }
 
 fn main() {
-	
-	//hardcoded for now
-	let config = read_config("config.json").unwrap();
-
-	let location = match env::args().skip(1).next() { 
+	let config_path = match env::args().skip(1).next() { 
 		Some(s) => s,
-		None => String::from("Prague")
+		None => String::from("config.json")
 	};
 
+	let config = read_config(&config_path).unwrap();
+
 	let uri = format!("http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&APPID={}",
-		location, config.api_key);
+		config.location, config.api_key);
 	let res = get_json(&uri);
 
 	match res {
